@@ -1,0 +1,25 @@
+﻿{
+  "_type": "Sequence",
+  "items": [
+    { "_type": "Assign", "name": "Scope.Url", "expression": "\"https://jsonplaceholder.typicode.com/posts\"" },
+    {
+      "_type": "HttpGet",
+      "_resultTo": "Scope.ContentList",
+      "url": "Scope.Url"
+    },
+    {
+      "_type": "Assign",
+      "name": "Scope.SelectedContent",
+      "expression": "Scope.ContentList[3]"
+    },
+    {
+      "_type": "Delay",
+      "_resultTo":  "Scope.DelayTime",
+      "duration": "1000 * 2 + 42"
+    },
+    {
+      "_type": "ConsoleWrite",
+      "message": "$\"We were also Delayed {Scope.DelayTime} ms before we could see this -> {Scope.SelectedContent.body}\""
+    }
+  ]
+}
