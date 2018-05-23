@@ -37,8 +37,7 @@ namespace WorkSharp.Tasks
                 if (item.Definition.ContainsKey("_resultTo"))
                 {
                     var key = item.Definition["_resultTo"];
-                    await Interpolator.InterpolateExpression($"{key} = Marshal.Result",
-                        new ContextAssignmentFrame { Scope = context, Marshal = new Marshal { Result = itemResult } });
+                    await Interpolator.AssignValueOnDynamic(context, key, itemResult);
                 }
             }
             return await Task.FromResult((object)true);

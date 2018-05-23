@@ -25,7 +25,7 @@ namespace WorkSharp
               .Default
               .AddReferences(refs)
               .AddImports("System.Collections.Generic", "System.Linq");
-            
+
             //var s = CSharpScript.Create<object>("$\"" + script + "\"", options, typeof(TContextType));
             var s = CSharpScript.Create<object>(script, options, typeof(TContextType));
             s.Compile();
@@ -33,6 +33,11 @@ namespace WorkSharp
             return r.ReturnValue;
         }
 
+        public Task<object> AssignValueOnDynamic(object context, string variableName, object value)
+        {
+            return InterpolateExpression($"{variableName} = Marshal.Result",
+                new ContextAssignmentFrame { Scope = context, Marshal = new Marshal { Result = value } });
+        }
 
     }
 }
