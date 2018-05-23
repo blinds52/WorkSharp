@@ -36,6 +36,7 @@ namespace WorkSharp.Tasks
                 var itemResult = await item.Invoke(context);
                 if (item.Definition.ContainsKey("_resultTo"))
                 {
+                    var contextFrame = new ContextFrame { Scope = context, Step = this };
                     var key = item.Definition["_resultTo"];
                     await Interpolator.AssignValueOnDynamic(context, key, itemResult);
                 }

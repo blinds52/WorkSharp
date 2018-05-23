@@ -10,6 +10,14 @@ namespace WorkSharp
         public dynamic Step { get; set; }
     }
 
+    public class ForEachContextFrame
+    {
+        public dynamic Scope { get; set; }
+        public dynamic Step { get; set; }
+
+        public dynamic Item { get; set; }
+    }
+
     public class Marshal
     {
         public dynamic Result { get; set; }

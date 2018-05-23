@@ -1,0 +1,34 @@
+﻿{
+  "_type": "Sequence",
+  "items": [
+    {
+      "_type": "ForEach",
+      "var": "Scope.Number",
+      "in": "new [] {1,2,3}",
+      "task": {
+        "_type": "ConsoleWrite",
+        "message": "Scope.Number"
+      }
+    },
+    {
+      "_type": "Assign",
+      "name": "Scope.Url",
+      "expression": "\"https://jsonplaceholder.typicode.com/posts\""
+    },
+    {
+      "_type": "HttpGet",
+      "_resultTo": "Scope.ContentList",
+      "url": "Scope.Url"
+    },
+    {
+      "_type": "ForEach",
+      "var": "Scope.Content",
+      "in": "Scope.ContentList",
+      "task": {
+        "_type": "ConsoleWrite",
+        "message": "Scope.Content"
+      }
+    }
+
+  ]
+}

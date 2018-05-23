@@ -10,10 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="for-each.json" />
     <None Remove="sample-wf.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="for-each.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sample-wf.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
