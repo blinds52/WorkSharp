@@ -27,13 +27,13 @@ namespace WorkSharp.Tasks
             Items = items.Select(item => WorkSharp.CreateFromJSON(item)).ToList();
         }
 
-        public async Task<object> InvokeAsync(object context)
+        public async Task<object> Invoke(object context)
         {
             dynamic ctx = context;
 
             foreach (var item in Items)
             {
-                var itemResult = await item.InvokeAsync(context);
+                var itemResult = await item.Invoke(context);
                 if (item.Definition.ContainsKey("_resultTo"))
                 {
                     var contextFrame = new ContextFrame { Scope = context, Step = this };

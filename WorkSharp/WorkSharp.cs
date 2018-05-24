@@ -21,7 +21,7 @@ namespace WorkSharp
 
             RegisterTaskType<ConsoleWrite>();
             RegisterTaskType<Assign>();
-            RegisterTaskType<TDelay>();
+            RegisterTaskType<Delay>();
             RegisterTaskType<HttpGet>();
             RegisterTaskType<Sequence>();
             RegisterTaskType<ParseHtml>();

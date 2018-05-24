@@ -26,7 +26,7 @@ namespace WorkSharp.Tasks
             DurationExpression = ((object)Definition["duration"]).ToString();
         }
 
-        public async Task<object> InvokeAsync(object context)
+        public async Task<object> Invoke(object context)
         {
             var durationValue = await interpolate(DurationExpression, new ContextFrame { Scope = context, Step = this });
             await Task.Delay((int)durationValue);

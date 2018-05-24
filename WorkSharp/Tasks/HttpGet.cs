@@ -31,7 +31,7 @@ namespace WorkSharp.Tasks
             IsJSONExpression = Definition.ContainsKey("isJSON") ? Definition["isJSON"] : "true";
         }
 
-        public async Task<object> InvokeAsync(object context)
+        public async Task<object> Invoke(object context)
         {
             var contextFrame = new ContextFrame { Scope = context, Step = this };
             var url = (string)await interpolate(UrlExpression);

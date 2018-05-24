@@ -24,7 +24,7 @@ namespace WorkSharp.Tasks
             HtmlExpression = Definition["html"];
         }
 
-        public async Task<object> InvokeAsync(object context)
+        public async Task<object> Invoke(object context)
         {
 
             // get html text
