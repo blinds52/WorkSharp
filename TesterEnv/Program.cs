@@ -11,12 +11,46 @@ namespace TesterEnv
     {
         public static async Task Main(string[] args)
         {
-            var jsonText = File.ReadAllText(Directory.GetCurrentDirectory() + "\\for-each.json");
-            ExpandoObject json = JsonConvert.DeserializeObject<ExpandoObject>(jsonText);
-            var ws = new WorkSharp.WorkSharp();
-            var wf = ws.CreateFromJSON(json);
-            var r = await wf.Invoke(new ExpandoObject());
-            Console.ReadLine();
+
+            await RunConfig("for-each.json");
+
+            String command;
+            Boolean quitNow = false;
+            while (!quitNow)
+            {
+
+                Console.WriteLine("Enter the json config file.");
+                command = Console.ReadLine();
+                if (command == "exit") quitNow = true;
+
+                await RunConfig(command);
+
+            }
         }
+
+        private static async Task RunConfig(string jsonName)
+        {
+
+            var jsonText = "";
+            try
+            {
+                jsonText = File.ReadAllText(Directory.GetCurrentDirectory() + "\\" + jsonName);
+                ExpandoObject json = JsonConvert.DeserializeObject<ExpandoObject>(jsonText);
+                var ws = new WorkSharp.WorkSharp();
+                var wf = ws.CreateFromJSON(json);
+                var r = await wf.Invoke(new ExpandoObject());
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Invalid json file name!");
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+
+        }
+
     }
+
 }
