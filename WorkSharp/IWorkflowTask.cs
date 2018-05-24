@@ -8,7 +8,7 @@ namespace WorkSharp
     {
         IDictionary<string, dynamic> Definition { get; }
 
-        Task<object> Invoke(object context);
+        Task<object> InvokeAsync(object context);
 
         void InitializeFromJson(object definition);
     }

@@ -15,7 +15,17 @@ namespace TesterEnv
             ExpandoObject json = JsonConvert.DeserializeObject<ExpandoObject>(jsonText);
             var ws = new WorkSharp.WorkSharp();
             var wf = ws.CreateFromJSON(json);
-            var r = await wf.Invoke(new ExpandoObject());
+            var r = await wf.InvokeAsync(new ExpandoObject());
+
+             // wait
+            do
+            {
+            while (!Console.KeyAvailable)
+                {
+                    // Do something
+                }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape) ;
+
         }
     }
 }

@@ -1,7 +1,11 @@
 ﻿{
   "_type": "Sequence",
   "items": [
-    { "_type": "Assign", "name": "Scope.Url", "expression": "\"https://jsonplaceholder.typicode.com/posts\"" },
+    {
+      "_type": "Assign",
+      "name": "Scope.Url",
+      "expression": "\"https://jsonplaceholder.typicode.com/posts\""
+    },
     {
       "_type": "HttpGet",
       "_resultTo": "Scope.ContentList",
@@ -10,16 +14,47 @@
     {
       "_type": "Assign",
       "name": "Scope.SelectedContent",
-      "expression": "Scope.ContentList[3]"
+      "expression": "Scope.ContentList[0]"
     },
     {
       "_type": "Delay",
-      "_resultTo":  "Scope.DelayTime",
+      "_resultTo": "Scope.DelayTime",
       "duration": "1000 * 2 + 42"
     },
     {
       "_type": "ConsoleWrite",
       "message": "$\"We were also Delayed {Scope.DelayTime} ms before we could see this -> {Scope.SelectedContent.body}\""
+    },
+    {
+      "_type": "Assign",
+      "name": "Scope.IndexUrl",
+      "expression": "\"https://index.hu/\""
+    },
+    {
+      "_type": "HttpGet",
+      "_resultTo": "Scope.IndexHtml",
+      "isJSON": "false",
+      "url": "Scope.IndexUrl"
+    },
+    {
+      "_type": "ParseHtml",
+      "_resultTo": "Scope.ParsedHtml",
+      "html": "Scope.IndexHtml"
+    },
+    {
+      "_type": "SelectHtmlNodes",
+      "_resultTo": "Scope.SelectedNodes",
+      "from": "Scope.ParsedHtml",
+      "selector": "/html/body/section[2]/div[1]/div[1]/article/div/div/div/h1/a"
+    },
+    {
+      "_type": "Assign",
+      "name": "Scope.FirstIndexPost",
+      "expression": "Scope.SelectedNodes[0].InnerText"
+    },
+    {
+      "_type": "ConsoleWrite",
+      "message": "$\"Index.hu first post: {Scope.FirstIndexPost}.\""
     }
   ]
 }

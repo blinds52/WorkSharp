@@ -24,6 +24,8 @@ namespace WorkSharp
             RegisterTaskType<Tasks.Delay>();
             RegisterTaskType<Tasks.HttpGet>();
             RegisterTaskType<Tasks.Sequence>();
+            RegisterTaskType<Tasks.ParseHtml>();
+            RegisterTaskType<Tasks.SelectHtmlNodes>();
         }
 
         public void RegisterTaskType<T>() where T : class

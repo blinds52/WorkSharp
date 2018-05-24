@@ -24,7 +24,7 @@ namespace WorkSharp.Tasks
             MessageExpression = Definition["message"];
         }
 
-        public async Task<object> Invoke(object context)
+        public async Task<object> InvokeAsync(object context)
         {
             var interpolatedMessage = await Interpolator.InterpolateExpression(MessageExpression,
                 new ContextFrame { Scope = context, Step = this });
