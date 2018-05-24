@@ -11,21 +11,12 @@ namespace TesterEnv
     {
         public static async Task Main(string[] args)
         {
-            var jsonText = File.ReadAllText(Directory.GetCurrentDirectory() + "\\sample-wf.json");
+            var jsonText = File.ReadAllText(Directory.GetCurrentDirectory() + "\\for-each.json");
             ExpandoObject json = JsonConvert.DeserializeObject<ExpandoObject>(jsonText);
             var ws = new WorkSharp.WorkSharp();
             var wf = ws.CreateFromJSON(json);
-            var r = await wf.InvokeAsync(new ExpandoObject());
-
-             // wait
-            do
-            {
-            while (!Console.KeyAvailable)
-                {
-                    // Do something
-                }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape) ;
-
+            var r = await wf.Invoke(new ExpandoObject());
+            Console.ReadLine();
         }
     }
 }

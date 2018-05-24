@@ -29,11 +29,10 @@ namespace WorkSharp.Tasks
 
         public async Task<object> InvokeAsync(object context)
         {
-            var expressionValue = await interpolate(Expression, new ContextFrame { Scope = context, Step = this });
-            await interpolate($"{Name} = Marshal.Result", new ContextAssignmentFrame(context, expressionValue));
-            return true;
-
-            Task<object> interpolate<T>(string expression, T contextFrame) => Interpolator.InterpolateExpression(expression, contextFrame);
+            var evaluationContext = new ContextFrame { Scope = context, Step = this };
+            var expressionValue = await Interpolator.InterpolateExpression(Expression, evaluationContext);
+            var assingmentResult = await Interpolator.AssignValueOnDynamic(context, Name, expressionValue);
+            return assingmentResult;
            
         }
     }

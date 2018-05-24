@@ -19,13 +19,14 @@ namespace WorkSharp
             Services.AddSingleton(new Interpolator());
             Services.AddSingleton(this);
 
-            RegisterTaskType<Tasks.ConsoleWrite>();
-            RegisterTaskType<Tasks.Assign>();
-            RegisterTaskType<Tasks.Delay>();
-            RegisterTaskType<Tasks.HttpGet>();
-            RegisterTaskType<Tasks.Sequence>();
-            RegisterTaskType<Tasks.ParseHtml>();
-            RegisterTaskType<Tasks.SelectHtmlNodes>();
+            RegisterTaskType<ConsoleWrite>();
+            RegisterTaskType<Assign>();
+            RegisterTaskType<TDelay>();
+            RegisterTaskType<HttpGet>();
+            RegisterTaskType<Sequence>();
+            RegisterTaskType<ParseHtml>();
+            RegisterTaskType<SelectHtmlNodes>();
+            RegisterTaskType<ForEach>();
         }
 
         public void RegisterTaskType<T>() where T : class
