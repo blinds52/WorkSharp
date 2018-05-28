@@ -24,9 +24,10 @@ namespace WorkSharp
             var options = ScriptOptions
               .Default
               .AddReferences(refs)
+              .AddReferences(typeof(System.Linq.Enumerable).Assembly)
               .AddImports("System.Collections.Generic", "System.Linq");
 
-            //var s = CSharpScript.Create<object>("$\"" + script + "\"", options, typeof(TContextType));
+            //var s = CSharpScript.Create<object>("$\"" + script     + "\"", options, typeof(TContextType));
             var s = CSharpScript.Create<object>(script, options, typeof(TContextType));
             s.Compile();
             var r = await s.RunAsync(executionContextFrame);
