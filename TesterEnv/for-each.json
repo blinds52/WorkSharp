@@ -23,7 +23,7 @@
     {
       "_type": "ForEach",
       "var": "Scope.Content",
-      "in": "Scope.ContentList",
+      "in": "(Scope.ContentList).Take(5)",
       "task": {
         "_type": "ConsoleWrite",
         "message": "Scope.Content"
