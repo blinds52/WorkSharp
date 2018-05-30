@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkSharp.Tasks
 {
-    class SelectHtmlNodes : IWorkflowTask
+    public class SelectHtmlNodes : IWorkflowTask
     {
         public IDictionary<string, dynamic> Definition { get; private set; }
         private Interpolator Interpolator { get; set; }

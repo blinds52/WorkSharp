@@ -15,7 +15,7 @@ namespace TesterEnv
         public static async Task Main(string[] args)
         {
 
-            await RunConfig("for-each.json");
+            await RunConfig("sample-wf.json");
 
             String command;
             Boolean quitNow = false;
@@ -37,8 +37,14 @@ namespace TesterEnv
             var jsonText = "";
             try
             {
-                jsonText = File.ReadAllText(Directory.GetCurrentDirectory() + "\\" + jsonName);
+                if (!jsonName.Contains(":\\"))
+                {
+                    jsonName = Directory.GetCurrentDirectory() + "\\" + jsonName;
+                }
+
+                jsonText = File.ReadAllText(jsonName);
                 ExpandoObject json = JsonConvert.DeserializeObject<ExpandoObject>(jsonText);
+
                 var ws = new WorkSharp.WorkSharp();
                 var wf = ws.CreateFromJSON(json);
                 var r = await wf.Invoke(new ExpandoObject());
@@ -47,7 +53,7 @@ namespace TesterEnv
             {
                 Console.WriteLine("Invalid json file name!");
             }
-            catch(Exception)
+            catch (Exception e)
             {
                 throw;
             }
