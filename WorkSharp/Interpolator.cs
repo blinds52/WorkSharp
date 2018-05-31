@@ -42,7 +42,7 @@ namespace WorkSharp
 
         public Task<object> AppendValueOnDynamic(object context, string listName, object value)
         {
-            return InterpolateExpression($"{listName}.Add(Marshal.Result)",
+            return InterpolateExpression($"{listName}.Add(Marshal.Result); {listName}",
                 new ContextAssignmentFrame { Scope = context, Marshal = new Marshal { Result = value } });
         }
 

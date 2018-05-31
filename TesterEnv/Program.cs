@@ -15,7 +15,7 @@ namespace TesterEnv
         public static async Task Main(string[] args)
         {
 
-            await RunConfig("sample-wf.json");
+            await RunConfig(@"C:\_tes\service-jobs-scraper\service-jobs-scraper\ScraperConfigs\teach-nsw-edu-au.json");
 
             String command;
             Boolean quitNow = false;
