@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using System.Web;
 
 namespace WorkSharp.Tasks
 {
@@ -35,6 +36,8 @@ namespace WorkSharp.Tasks
         {
             var contextFrame = new ContextFrame { Scope = context, Step = this };
             var url = (string)await interpolate(UrlExpression);
+            url = HttpUtility.HtmlDecode(url);
+
             var isJSON = (bool)await interpolate(IsJSONExpression);
             var client = new HttpClient();
             Console.WriteLine($"Request with HTTP GET from: ${url}... hold your horses.");
