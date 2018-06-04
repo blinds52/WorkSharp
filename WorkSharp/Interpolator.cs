@@ -19,13 +19,14 @@ namespace WorkSharp
         {
             var refs = new List<MetadataReference>{
                 MetadataReference.CreateFromFile(typeof(Microsoft.CSharp.RuntimeBinder.RuntimeBinderException).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(System.Runtime.CompilerServices.DynamicAttribute).GetTypeInfo().Assembly.Location)
+                MetadataReference.CreateFromFile(typeof(System.Runtime.CompilerServices.DynamicAttribute).GetTypeInfo().Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(WorkSharp).GetTypeInfo().Assembly.Location)
             };
             var options = ScriptOptions
               .Default
               .AddReferences(refs)
               .AddReferences(typeof(System.Linq.Enumerable).Assembly)
-              .AddImports("System.Collections.Generic", "System.Linq");
+              .AddImports("System", "System.Collections.Generic", "System.Linq", "WorkSharp.Functions");
 
             //var s = CSharpScript.Create<object>("$\"" + script     + "\"", options, typeof(TContextType));
             var s = CSharpScript.Create<object>(script, options, typeof(TContextType));

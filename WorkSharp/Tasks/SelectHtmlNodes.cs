@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace WorkSharp.Tasks
 {
@@ -39,11 +40,6 @@ namespace WorkSharp.Tasks
             // run selector 
             HtmlNodeCollection nodes = htmlDoc.DocumentNode
                 .SelectNodes(Selector);
-
-            if(nodes is null)
-            {
-                //throw new Exception("Selector return");
-            }
 
             // run ndoe expression
             //var nodeContextFrame = new NodeContextFrame { NodeList = nodes };
