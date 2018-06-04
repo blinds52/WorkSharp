@@ -78,11 +78,14 @@ namespace WorkSharp.Tasks
 
                                     if (dc.TryGetValue("expression", out expression)){
 
-                                        var ResultContext = new Marshal() { Result = result };
+                                        var expressionValue = "";
+                                        if (result != null)
+                                        {
+                                            var ResultContext = new Marshal() { Result = result };
+                                            expressionValue = await Interpolator.InterpolateExpression(expression, ResultContext);
+                                        } 
 
-                                        var expressionValue = await Interpolator.InterpolateExpression(expression, ResultContext);
-
-                                        return await AssignValueOnDynamic(Name + "." + expressionItem.Key, expressionValue);
+                                        await AssignValueOnDynamic(Name + "." + expressionItem.Key, expressionValue);
 
                                     }
 

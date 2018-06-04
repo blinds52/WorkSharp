@@ -35,6 +35,9 @@ namespace WorkSharp.Tasks
             // parse html to document object
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlString);
+
+            htmlDoc.OptionAutoCloseOnEnd = true;
+
             return htmlDoc;
 
             Task<object> interpolate(string expression) => Interpolator.InterpolateExpression(expression, contextFrame);

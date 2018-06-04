@@ -40,6 +40,11 @@ namespace WorkSharp.Tasks
             HtmlNodeCollection nodes = htmlDoc.DocumentNode
                 .SelectNodes(Selector);
 
+            if(nodes is null)
+            {
+                //throw new Exception("Selector return");
+            }
+
             // run ndoe expression
             //var nodeContextFrame = new NodeContextFrame { NodeList = nodes };
             //return await Interpolator.InterpolateExpression(NodeExpression, nodeContextFrame);
